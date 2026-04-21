@@ -8,10 +8,10 @@ const LETTER_CONTENT = {
   // ✏️ Đổi tên của bạn ở đây
   yourName: 'Anh',
   paragraphs: [
-    'Chúc mừng sinh nhật thiên thần của anh! 🎂',
-    'Anh không phải là người quá giỏi diễn đạt, nhưng anh mong em biết rằng mỗi ngày có em bên cạnh đều là ngày hạnh phúc nhất đối với anh.',
-    'Tuổi mới, chúc em luôn xinh đẹp, vui vẻ và thành công với những dự định của mình. Dù có khó khăn gì đi nữa, hãy luôn nhớ rằng phía sau em luôn có anh ủng hộ.',
-    'Hãy cứ là chính em — một cô gái rạng rỡ và tuyệt vời nhất! ✨',
+    'Hôm nay là ngày đặc biệt nhất của năm — ngày em chào đời, ngày mà anh biết ơn vì em đã xuất hiện trong cuộc đời này và đi vào cuộc đời anh.',
+    'Một tuổi mới, một trang mới. Anh chúc em năm nay sẽ chạm được những điều em hằng mơ ước — công việc thuận lợi, sức khỏe dồi dào, và trái tim luôn nhẹ nhàng, bình yên. Em xứng đáng được nhận tất cả những điều tốt đẹp nhất mà cuộc đời có thể trao.',
+    'Và dù năm mới có mang đến bao nhiêu thử thách, em đừng bao giờ quên rằng phía sau em luôn có anh — không phải để gánh thay, mà để cùng em bước qua từng bước một.',
+    'Sinh nhật vui, em yêu. Cảm ơn em vì đã sinh ra, vì đã là em — và vì đã để anh được yêu em. ✨',
   ],
 };
 
@@ -27,7 +27,7 @@ const Letter = () => {
         <div className="letter-top-bar" />
 
         <h2 className="letter-title">
-          Gửi {LETTER_CONTENT.partnerName}, Nửa Kia Của Anh...
+          Chúc Mừng Sinh Nhật {LETTER_CONTENT.partnerName}! 🎂
         </h2>
 
         <div className="letter-body">
@@ -35,7 +35,7 @@ const Letter = () => {
             <p key={i}>{para}</p>
           ))}
           <p className="letter-sign">
-            Yêu em mãi mãi, <br />
+            Mãi yêu em, hôm nay và tất cả những ngày sinh nhật còn lại. <br />
             {LETTER_CONTENT.yourName} ❤️
           </p>
         </div>

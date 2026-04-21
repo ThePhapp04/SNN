@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 
 // ✏️ THAY ĐƯỜNG DẪN NHẠC Ở ĐÂY
 // Bỏ file .mp3 vào thư mục /public rồi đổi thành "/ten-bai-hat.mp3"
-const MUSIC_URL = 'https://cdn.pixabay.com/download/audio/2022/05/16/audio_9k3a4q5b1d.mp3?filename=romantic-piano-110243.mp3';
+const MUSIC_URL = '/nhac.mp3';
 
 const MusicPlayer = ({ autoPlay = true }) => {
   const [isPlaying, setIsPlaying] = useState(autoPlay);

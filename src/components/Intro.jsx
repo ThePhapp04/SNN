@@ -36,7 +36,7 @@ const Intro = ({ onStart }) => {
           animate={{ scale: 1 }}
           transition={{ duration: 2, ease: 'easeOut' }}
         >
-          Happy Birthday,<br />My Love ❤️
+          Happy Birthday,<br />Vân Anh ❤️
         </motion.h1>
 
         <motion.p

@@ -6,70 +6,111 @@ import Surprise from './Surprise';
 
 // ✏️ Chỉnh nội dung thư ở đây
 const LETTER = {
-  greeting: 'Gửi Em Yêu, Nửa Kia Của Anh...',
+  greeting: 'Chúc Mừng Sinh Nhật Vanhhhh! 🎂',
   paragraphs: [
-    'Chúc mừng sinh nhật thiên thần của anh! 🎂',
-    'Anh không phải là người quá giỏi diễn đạt, nhưng anh mong em biết rằng mỗi ngày có em bên cạnh đều là ngày hạnh phúc nhất đối với anh.',
-    'Tuổi mới, chúc em luôn xinh đẹp, vui vẻ và thành công với những dự định của mình. Dù có khó khăn gì đi nữa, hãy luôn nhớ rằng phía sau em luôn có anh ủng hộ.',
-    'Hãy cứ là chính em — một cô gái rạng rỡ và tuyệt vời nhất! ✨',
+    'Hôm nay là ngày đặc biệt nhất của năm — ngày em chào đời, ngày mà anh biết ơn vì em đã xuất hiện trong cuộc đời này và đi vào cuộc đời anh.',
+    'Một tuổi mới, một trang mới. Anh chúc em năm nay sẽ chạm được những điều em hằng mơ ước — công việc thuận lợi, sức khỏe dồi dào, và trái tim luôn nhẹ nhàng, bình yên. Em xứng đáng được nhận tất cả những điều tốt đẹp nhất mà cuộc đời có thể trao.',
+    'Và dù năm mới có mang đến bao nhiêu thử thách, em đừng bao giờ quên rằng phía sau em luôn có anh — không phải để gánh thay, mà để cùng em bước qua từng bước một.',
+    'Sinh nhật vui, em yêu. Cảm ơn em vì đã sinh ra, vì đã là em — và vì đã để anh được iu em. ✨',
   ],
-  sign: 'Yêu em mãi mãi, Anh ❤️',
+  sign: 'Mãi yêu em, hôm nay và tất cả những ngày sinh nhật còn lại. Anh ❤️',
 };
 
 // ✏️ Thay URL ảnh & caption ở đây
+// Cách dùng ảnh local: bỏ file vào /public/photos/ rồi đặt src: '/photos/anh1.jpg'sa
+// Cách dùng link online: dán thẳng URL ảnh vào src
 const PHOTOS = [
   {
-    src: 'https://images.unsplash.com/photo-1518568814500-bf0f8d125f46?auto=format&fit=crop&q=80&w=1200',
-    label: 'Kỷ Niệm 1',
-    caption: 'Mỗi khoảnh khắc bên em đều là điều quý giá nhất với anh... 💕',
+    src: '/photos/anh1.jpg',
+    caption: 'Chúc mừng sinh nhật Vân Anh — hôm nay là ngày của riêng em, hãy để anh dành trọn ngày này cho em! 🎂',
   },
   {
-    src: 'https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&q=80&w=1200',
-    label: 'Kỷ Niệm 2',
-    caption: 'Nụ cười của em là điều anh muốn nhìn mãi suốt đời... 😊',
+    src: '/photos/anh2.jpg',
+    caption: 'Nụ cười rạng rỡ đó — sinh nhật nào anh cũng mong được nhìn thấy, mãi mãi về sau 😊',
   },
   {
-    src: 'https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&q=80&w=1200',
-    label: 'Kỷ Niệm 3',
-    caption: 'Cảm ơn em đã là một phần không thể thiếu trong cuộc đời anh 🌸',
+    src: '/photos/anh3.jpg',
+    caption: 'Chúc em tuổi mới bình an, khỏe mạnh, và luôn được yêu thương xứng đáng như em mong muốn 🌸',
   },
   {
-    src: 'https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&q=80&w=1200',
-    label: 'Kỷ Niệm 4',
-    caption: 'Bên em, anh tìm thấy bình yên và hạnh phúc thực sự... ✨',
+    src: '/photos/anh4.jpg',
+    caption: 'Một tuổi mới bắt đầu — chúc em đạt được tất cả những gì em đang hướng đến, anh tin em làm được! ✨',
   },
   {
-    src: 'https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?auto=format&fit=crop&q=80&w=1200',
-    label: 'Kỷ Niệm 5',
-    caption: 'Mỗi ngày trôi qua, anh lại càng yêu em hơn ngày hôm qua 💖',
+    src: '/photos/anh5.jpg',
+    caption: 'Sinh nhật vui em ơi! Chúc em năm nay nhiều niềm vui, ít muộn phiền, và thật nhiều kỷ niệm đẹp 💖',
   },
   {
-    src: 'https://images.unsplash.com/photo-1606216794074-735e91aa2c92?auto=format&fit=crop&q=80&w=1200',
-    label: 'Kỷ Niệm 6',
-    caption: 'Chúc em một tuổi mới thật nhiều niềm vui và tình yêu! 🎉',
+    src: '/photos/anh6.jpg',
+    caption: 'Cảm ơn em vì đã sinh ra — và cảm ơn vì đã để anh được là người ở bên em ngày hôm nay',
+  },
+  {
+    src: '/photos/anh7.jpg',
+    caption: 'Bó hoa này, trái tim này — tất cả đều là của em, sinh nhật vui nhé con nợnn 💕',
   },
 ];
 
+// All text blocks for the typewriter, in order
+const LETTER_BLOCKS = [
+  { text: LETTER.greeting, role: 'title' },
+  ...LETTER.paragraphs.map(t => ({ text: t, role: 'para' })),
+  { text: LETTER.sign, role: 'sign' },
+];
+
+// Total chars × ~45 ms + inter-block pauses → ~24 s
+const LETTER_DURATION = 26000;
+
 // Slide definitions: duration = ms, null = no auto-advance
 const SLIDES = [
-  { id: 'letter',   type: 'letter',  duration: 14000 },
+  { id: 'letter',   type: 'letter',  duration: LETTER_DURATION },
   ...PHOTOS.map((p, i) => ({ id: `photo-${i}`, type: 'photo', duration: 6000, ...p })),
   { id: 'surprise', type: 'surprise', duration: null },
 ];
 
-/* ─────────── LETTER SLIDE ─────────── */
-const LetterSlide = () => {
-  const [count, setCount] = useState(1);
+/* ─────────── TYPEWRITER HOOK ─────────── */
+const useTypewriter = (blocks, charDelay = 44, blockPause = 420) => {
+  // blockIdx: which block is currently typing; charIdx: how many chars shown
+  const [blockIdx, setBlockIdx] = useState(0);
+  const [charIdx,  setCharIdx]  = useState(0);
+  const [done,     setDone]     = useState(false);
 
   useEffect(() => {
-    setCount(1);
-    const timers = LETTER.paragraphs.slice(1).map((_, i) =>
-      setTimeout(() => setCount(i + 2), (i + 1) * 2600),
-    );
-    return () => timers.forEach(clearTimeout);
+    setBlockIdx(0);
+    setCharIdx(0);
+    setDone(false);
   }, []);
 
-  const showSign = count > LETTER.paragraphs.length;
+  useEffect(() => {
+    if (done) return;
+
+    const block = blocks[blockIdx];
+    if (!block) { setDone(true); return; }
+
+    if (charIdx < block.text.length) {
+      // Type next character
+      const t = setTimeout(() => setCharIdx(c => c + 1), charDelay);
+      return () => clearTimeout(t);
+    }
+
+    // Block finished — pause then advance to next
+    if (blockIdx < blocks.length - 1) {
+      const t = setTimeout(() => {
+        setBlockIdx(b => b + 1);
+        setCharIdx(0);
+      }, blockPause);
+      return () => clearTimeout(t);
+    }
+
+    // All blocks done
+    setDone(true);
+  }, [blockIdx, charIdx, done, blocks, charDelay, blockPause]);
+
+  return { blockIdx, charIdx, done };
+};
+
+/* ─────────── LETTER SLIDE ─────────── */
+const LetterSlide = () => {
+  const { blockIdx, charIdx, done } = useTypewriter(LETTER_BLOCKS);
 
   return (
     <motion.div
@@ -84,28 +125,33 @@ const LetterSlide = () => {
 
       <div className="letter-card glass letter-slide-inner">
         <div className="letter-top-bar" />
-        <h2 className="letter-title">{LETTER.greeting}</h2>
+
         <div className="letter-body">
-          {LETTER.paragraphs.slice(0, count).map((para, i) => (
-            <motion.p
-              key={i}
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7 }}
-            >
-              {para}
-            </motion.p>
-          ))}
-          {showSign && (
-            <motion.p
-              className="letter-sign"
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7 }}
-            >
-              {LETTER.sign}
-            </motion.p>
-          )}
+          {LETTER_BLOCKS.map((block, bi) => {
+            if (bi > blockIdx) return null;
+
+            const isTyping = bi === blockIdx;
+            const text = isTyping ? block.text.slice(0, charIdx) : block.text;
+            const showCursor = isTyping && !done;
+
+            const cls =
+              block.role === 'title' ? 'letter-title tw-title' :
+              block.role === 'sign'  ? 'letter-sign tw-para'   :
+                                       'tw-para';
+
+            return (
+              <motion.p
+                key={bi}
+                className={cls}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.35 }}
+              >
+                {text}
+                {showCursor && <span className="tw-cursor">|</span>}
+              </motion.p>
+            );
+          })}
         </div>
       </div>
     </motion.div>

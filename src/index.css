@@ -365,10 +365,41 @@ img {
   width: 100%;
   min-height: 100vh;
   overflow: hidden;
-  background: linear-gradient(160deg, #0d0015 0%, #1a0030 45%, #0a0018 100%);
+  background:
+    radial-gradient(ellipse at 20% 30%, rgba(180, 0, 100, 0.18) 0%, transparent 55%),
+    radial-gradient(ellipse at 80% 20%, rgba(120, 0, 180, 0.18) 0%, transparent 55%),
+    radial-gradient(ellipse at 50% 80%, rgba(200, 50, 130, 0.12) 0%, transparent 50%),
+    linear-gradient(160deg, #08000f 0%, #160025 40%, #0a0018 70%, #120020 100%);
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+/* Pseudo starfield */
+.surprise-stars {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image:
+    radial-gradient(1px 1px at 15%  8%,  rgba(255,255,255,0.7) 0%, transparent 100%),
+    radial-gradient(1px 1px at 35% 18%,  rgba(255,220,255,0.5) 0%, transparent 100%),
+    radial-gradient(1px 1px at 55%  5%,  rgba(255,255,255,0.6) 0%, transparent 100%),
+    radial-gradient(1px 1px at 75% 12%,  rgba(255,200,255,0.5) 0%, transparent 100%),
+    radial-gradient(1px 1px at 90%  6%,  rgba(255,255,255,0.8) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 8%  22%, rgba(255,255,255,0.6) 0%, transparent 100%),
+    radial-gradient(1px 1px at 45% 28%,  rgba(255,230,255,0.5) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 65% 35%, rgba(255,255,255,0.7) 0%, transparent 100%),
+    radial-gradient(1px 1px at 85% 25%,  rgba(255,200,255,0.6) 0%, transparent 100%),
+    radial-gradient(1px 1px at 25% 45%,  rgba(255,255,255,0.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 70% 50%,  rgba(255,220,255,0.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 5%  55%,  rgba(255,255,255,0.5) 0%, transparent 100%),
+    radial-gradient(1px 1px at 92% 48%,  rgba(255,255,255,0.5) 0%, transparent 100%);
+  pointer-events: none;
+  animation: starTwinkle 4s ease-in-out infinite alternate;
+}
+@keyframes starTwinkle {
+  0%   { opacity: 0.6; }
+  100% { opacity: 1;   }
 }
 
 .fireworks-canvas {
@@ -377,47 +408,113 @@ img {
   width: 100%;
   height: 100%;
   pointer-events: none;
-  z-index: 0;
+  z-index: 1;
 }
 
 .surprise-content {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.75rem;
+  gap: 1.6rem;
   padding: 4rem 1.5rem 4.5rem;
   text-align: center;
   width: 100%;
   max-width: 720px;
 }
 
+/* Top sparkles row */
+.surprise-top-sparkles {
+  display: flex;
+  gap: 0.4rem;
+  font-size: clamp(1.1rem, 3vw, 1.5rem);
+}
+.top-sparkle-item {
+  display: inline-block;
+  animation: sparklePop 2s ease-in-out infinite alternate;
+}
+
+/* Title wrapper */
+.surprise-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.surprise-title-hearts {
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  display: inline-block;
+}
 .surprise-title {
   font-family: 'Dancing Script', cursive;
   font-weight: 700;
-  font-size: clamp(2.4rem, 8vw, 5rem);
-  color: #fff;
+  font-size: clamp(2.2rem, 7vw, 4.6rem);
+  background: linear-gradient(
+    135deg,
+    #ffe0f0 0%, #ff8fb1 25%, #f06292 50%, #ce93d8 75%, #ffb3d9 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   line-height: 1.2;
-  text-shadow:
-    0 0 18px rgba(244, 143, 177, 0.85),
-    0 0 36px rgba(206, 147, 216, 0.6),
-    0 3px 10px rgba(0, 0, 0, 0.45);
-  animation: titleGlow 2.5s ease-in-out infinite alternate;
+  text-shadow: none;
+  filter: drop-shadow(0 0 18px rgba(244, 100, 160, 0.7));
+  animation: titleShimmer 3s ease-in-out infinite alternate;
+}
+@keyframes titleShimmer {
+  0%   { filter: drop-shadow(0 0 16px rgba(244,100,160,0.6)); }
+  100% { filter: drop-shadow(0 0 36px rgba(255,60,150,1)) drop-shadow(0 0 60px rgba(206,147,216,0.7)); }
 }
 
-@keyframes titleGlow {
-  0%   { text-shadow: 0 0 18px rgba(244,143,177,0.85), 0 0 36px rgba(206,147,216,0.6), 0 3px 10px rgba(0,0,0,0.4); }
-  100% { text-shadow: 0 0 32px rgba(244,143,177,1),    0 0 64px rgba(206,147,216,0.9), 0 3px 10px rgba(0,0,0,0.4); }
+/* Subtitle */
+.surprise-subtitle {
+  font-size: clamp(0.95rem, 2.5vw, 1.2rem);
+  color: rgba(255, 200, 230, 0.9);
+  letter-spacing: 0.08em;
+  font-style: italic;
+  text-shadow: 0 0 12px rgba(255, 120, 180, 0.5);
 }
 
-.surprise-wish {
-  font-size: clamp(1rem, 2.8vw, 1.3rem);
-  color: rgba(255, 255, 255, 0.92);
-  font-weight: 500;
-  line-height: 1.85;
-  max-width: 520px;
-  text-shadow: 0 1px 5px rgba(0, 0, 0, 0.35);
+/* Romantic poem card */
+.surprise-poem-card {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.07) 0%,
+    rgba(206, 147, 216, 0.1) 50%,
+    rgba(244, 143, 177, 0.08) 100%
+  );
+  border: 1px solid rgba(244, 143, 177, 0.3);
+  border-radius: 1.2rem;
+  padding: 1.6rem 2rem;
+  max-width: 540px;
+  width: 100%;
+  backdrop-filter: blur(10px);
+  box-shadow:
+    0 0 30px rgba(244, 143, 177, 0.15),
+    0 0 60px rgba(206, 147, 216, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+.surprise-poem-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.04) 0%, transparent 60%);
+  pointer-events: none;
+}
+.poem-line {
+  font-size: clamp(0.95rem, 2.5vw, 1.15rem);
+  color: rgba(255, 240, 248, 0.92);
+  line-height: 1.95;
+  margin: 0;
+  font-style: italic;
+}
+.poem-line--accent {
+  color: #ffb3d9;
+  font-weight: 600;
+  font-style: normal;
+  text-shadow: 0 0 10px rgba(255, 100, 160, 0.4);
 }
 
 /* ── Birthday cake ── */
@@ -426,6 +523,24 @@ img {
   flex-direction: column;
   align-items: center;
   gap: 0;
+  position: relative;
+}
+
+.cake-glow-ring {
+  position: absolute;
+  bottom: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: clamp(100px, 28vw, 180px);
+  height: clamp(20px, 5vw, 36px);
+  background: radial-gradient(ellipse, rgba(255, 100, 180, 0.45) 0%, transparent 70%);
+  filter: blur(12px);
+  pointer-events: none;
+  animation: glowRingPulse 2.5s ease-in-out infinite alternate;
+}
+@keyframes glowRingPulse {
+  0%   { opacity: 0.5; transform: translateX(-50%) scaleX(0.85); }
+  100% { opacity: 1;   transform: translateX(-50%) scaleX(1.1);  }
 }
 
 .cake-candles-row {
@@ -433,6 +548,8 @@ img {
   gap: 0.3rem;
   font-size: clamp(1.6rem, 5vw, 2.4rem);
   margin-bottom: -0.35rem;
+  position: relative;
+  z-index: 1;
 }
 
 .candle {
@@ -443,48 +560,84 @@ img {
 
 @keyframes candleFlicker {
   0%   { transform: scaleX(1)    translateY(0);     filter: brightness(1); }
-  50%  { transform: scaleX(0.9)  translateY(-2px);  filter: brightness(1.3); }
+  50%  { transform: scaleX(0.9)  translateY(-2px);  filter: brightness(1.4); }
   100% { transform: scaleX(1.08) translateY(0);     filter: brightness(0.95); }
 }
 
 .cake-body {
   font-size: clamp(5rem, 18vw, 9rem);
   line-height: 1;
-  filter: drop-shadow(0 0 28px rgba(244, 143, 177, 0.65))
-          drop-shadow(0 0 10px rgba(206, 147, 216, 0.5));
+  position: relative;
+  z-index: 1;
 }
 
-/* ── Bottom text & sparkles ── */
-.surprise-bottom-text {
-  font-size: clamp(1rem, 2.8vw, 1.3rem);
+/* ── Love message ── */
+.surprise-love-msg {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  font-size: clamp(0.95rem, 2.5vw, 1.15rem);
   color: #ffd6f0;
   font-weight: 600;
-  letter-spacing: 0.025em;
-  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.3);
+  letter-spacing: 0.03em;
+  text-shadow: 0 0 14px rgba(255, 100, 160, 0.5);
+}
+.love-heart {
+  font-size: clamp(1.2rem, 3vw, 1.6rem);
+  animation: heartBeat 1.2s ease-in-out infinite;
+  display: inline-block;
+}
+@keyframes heartBeat {
+  0%, 100% { transform: scale(1);    }
+  14%       { transform: scale(1.22); }
+  28%       { transform: scale(1);    }
+  42%       { transform: scale(1.15); }
+  70%       { transform: scale(1);    }
 }
 
+/* ── Sparkles row ── */
 .surprise-sparkles {
   display: flex;
-  gap: 0.5rem;
-  font-size: clamp(1.2rem, 3.5vw, 1.7rem);
+  gap: 0.45rem;
+  font-size: clamp(1.1rem, 3vw, 1.6rem);
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .sparkle-item {
   display: inline-block;
-  animation: sparklePop 1.6s ease-in-out infinite alternate;
+  animation: sparklePop 1.8s ease-in-out infinite alternate;
 }
 
 @keyframes sparklePop {
-  0%   { transform: scale(1)    rotate(-5deg);  opacity: 0.8; }
-  100% { transform: scale(1.25) rotate(5deg);   opacity: 1;   }
+  0%   { transform: scale(1)    rotate(-6deg);  opacity: 0.75; }
+  100% { transform: scale(1.3)  rotate(6deg);   opacity: 1;    }
+}
+
+/* ── Closing line ── */
+.surprise-closing {
+  font-family: 'Dancing Script', cursive;
+  font-size: clamp(1.2rem, 3.5vw, 1.8rem);
+  color: rgba(255, 180, 220, 0.85);
+  letter-spacing: 0.06em;
+  text-shadow:
+    0 0 16px rgba(255, 100, 180, 0.5),
+    0 0 32px rgba(206, 147, 216, 0.3);
+  animation: closingFade 3s ease-in-out infinite alternate;
+}
+@keyframes closingFade {
+  0%   { opacity: 0.65; letter-spacing: 0.06em; }
+  100% { opacity: 1;    letter-spacing: 0.1em;  }
 }
 
 @media (max-width: 480px) {
   .surprise-content {
     padding: 3rem 1rem 3.5rem;
-    gap: 1.4rem;
+    gap: 1.3rem;
   }
   .cake-candles-row { font-size: 1.5rem; }
+  .surprise-poem-card { padding: 1.2rem 1.2rem; }
+  .surprise-title-wrap { gap: 0.4rem; }
 }
 
 /* ===== SLIDESHOW ===== */
@@ -636,6 +789,40 @@ img {
   overflow-y: auto;
 }
 
+/* Typewriter paragraph */
+.tw-para {
+  font-family: 'Dancing Script', cursive;
+  font-size: clamp(1.05rem, 2.8vw, 1.25rem);
+  color: #444;
+  line-height: 1.85;
+  white-space: pre-wrap;
+  min-height: 1.4em;
+}
+
+/* Title rendered via typewriter */
+.tw-title {
+  font-size: clamp(1.6rem, 5vw, 3rem) !important;
+  color: #d81b60 !important;
+  text-align: center;
+  margin-bottom: 1.4rem;
+  display: block;
+}
+
+/* Blinking pen cursor */
+.tw-cursor {
+  display: inline-block;
+  color: #e91e8c;
+  font-weight: 400;
+  margin-left: 1px;
+  animation: twBlink 0.75s step-start infinite;
+  user-select: none;
+}
+
+@keyframes twBlink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
 /* ── Photo slide ── */
 .photo-slide {
   background: #000;
@@ -644,8 +831,17 @@ img {
 .photo-bg {
   position: absolute;
   inset: 0;
-  background-size: cover;
+  /* Mobile: contain để thấy toàn ảnh, không bị crop */
+  background-size: contain;
   background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Laptop / màn rộng: dùng cover để ảnh đẹp hơn, ít khoảng trắng */
+@media (min-width: 768px) {
+  .photo-bg {
+    background-size: cover;
+  }
 }
 
 .photo-overlay {
