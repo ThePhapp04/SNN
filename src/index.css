@@ -936,6 +936,7 @@ img {
   border-radius: 9999px;
   filter: blur(90px);
   pointer-events: none;
+  will-change: transform;
 }
 .cascade-blob-1 {
   width: 400px; height: 400px;
@@ -963,6 +964,7 @@ img {
   opacity: 0;
   pointer-events: none;
   z-index: 1;
+  will-change: transform, opacity;
   animation: cascadeParticleFloat 5s ease-in-out infinite;
 }
 @keyframes cascadeParticleFloat {
@@ -986,6 +988,7 @@ img {
   position: relative;
   z-index: 2;
   filter: drop-shadow(0 0 14px rgba(233, 30, 140, 0.55));
+  will-change: opacity;
 }
 
 /* Row of 3 falling polaroids */
@@ -1010,6 +1013,7 @@ img {
   position: relative;
   overflow: hidden;
   cursor: default;
+  will-change: transform, opacity;
 }
 
 .cascade-polaroid img {
@@ -1050,6 +1054,7 @@ img {
   width: min(88%, 310px);
   position: relative;
   z-index: 2;
+  will-change: transform, opacity;
 }
 
 .cascade-star-glow {
@@ -1064,6 +1069,7 @@ img {
   filter: blur(30px);
   pointer-events: none;
   z-index: -1;
+  will-change: transform, opacity;
   animation: cascadeGlowPulse 2.8s ease-in-out infinite alternate;
 }
 @keyframes cascadeGlowPulse {
@@ -1081,11 +1087,13 @@ img {
     0 28px 72px rgba(0, 0, 0, 0.88),
     0 0  55px rgba(233, 30, 140, 0.38),
     0 0  90px rgba(206, 147, 216, 0.18);
+  will-change: opacity;
   animation: cascadeFrameShimmer 4s ease-in-out infinite alternate;
 }
+/* Animate opacity only — box-shadow animation causes paint every frame on mobile */
 @keyframes cascadeFrameShimmer {
-  0%   { box-shadow: 0 28px 72px rgba(0,0,0,0.88), 0 0 45px rgba(233,30,140,0.32); }
-  100% { box-shadow: 0 28px 72px rgba(0,0,0,0.88), 0 0 75px rgba(233,30,140,0.6), 0 0 110px rgba(206,147,216,0.25); }
+  0%   { opacity: 0.88; }
+  100% { opacity: 1; }
 }
 
 .cascade-star-mat {
@@ -1132,6 +1140,36 @@ img {
     0 0  36px rgba(206, 147, 216, 0.45);
   line-height: 1.6;
   padding: 0 0.5rem;
+}
+
+@media (max-width: 768px) {
+  /* Kill expensive blur animations on mobile — biggest perf win */
+  .cascade-blob { animation: none !important; }
+  .cascade-blob-1 { filter: blur(40px); width: 200px; height: 200px; }
+  .cascade-blob-2 { filter: blur(40px); width: 180px; height: 180px; }
+  .cascade-blob-3 { display: none; }
+  .cascade-center-glow { display: none; }
+
+  /* Reduce glow blur — still looks good at lower cost */
+  .cascade-star-glow { filter: blur(14px); animation: none; opacity: 0.8; }
+
+  /* Hide floating particles — 8 animated elements is too much on mobile */
+  .cascade-particle { display: none; }
+
+  /* Remove drop-shadow filter on title */
+  .cascade-title { filter: none; }
+
+  /* Simplify frame glow */
+  .cascade-star-frame {
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.85), 0 0 28px rgba(233, 30, 140, 0.35);
+    animation: none;
+    opacity: 1;
+  }
+
+  /* Simpler polaroid shadows */
+  .cascade-polaroid {
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.65);
+  }
 }
 
 @media (max-width: 480px) {
