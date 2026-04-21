@@ -64,6 +64,7 @@ const LETTER_DURATION = 26000;
 const SLIDES = [
   { id: 'letter',   type: 'letter',  duration: LETTER_DURATION },
   ...PHOTOS.map((p, i) => ({ id: `photo-${i}`, type: 'photo', duration: 6000, ...p })),
+  { id: 'cascade', type: 'cascade', duration: 10000 },
   { id: 'surprise', type: 'surprise', duration: null },
 ];
 
@@ -157,6 +158,125 @@ const LetterSlide = () => {
     </motion.div>
   );
 };
+
+/* ─────────── CASCADE SLIDE ─────────── */
+const CASCADE_DROPS = [
+  { src: '/photos/anh9.jpg',  initRot: -22, finalRot: -9 },
+  { src: '/photos/anh11.jpg', initRot:   3, finalRot:  6 },
+  { src: '/photos/anh10.jpg', initRot:  20, finalRot: -5 },
+];
+const CASCADE_STAR = {
+  src: '/photos/anh3.jpg',
+  caption: 'Mỗi khoảnh khắc bên em đều là ký ức anh trân trọng mãi mãi 💕',
+};
+const CASCADE_PARTICLES = [
+  { cls: 'cp0', style: { left: '10%',  top: '20%', width: 4,  height: 4,  animationDelay: '2.5s', background: '#ffd6f0' } },
+  { cls: 'cp1', style: { left: '83%',  top: '17%', width: 5,  height: 5,  animationDelay: '3.2s', background: '#ce93d8' } },
+  { cls: 'cp2', style: { left: '26%',  top: '74%', width: 3,  height: 3,  animationDelay: '2.9s', background: '#fff'    } },
+  { cls: 'cp3', style: { left: '72%',  top: '66%', width: 4,  height: 4,  animationDelay: '3.6s', background: '#ffb3d9' } },
+  { cls: 'cp4', style: { left: '49%',  top: '11%', width: 6,  height: 6,  animationDelay: '2.2s', background: '#ffd6f0' } },
+  { cls: 'cp5', style: { left: '91%',  top: '43%', width: 3,  height: 3,  animationDelay: '3.4s', background: '#ce93d8' } },
+  { cls: 'cp6', style: { left: '7%',   top: '57%', width: 4,  height: 4,  animationDelay: '2.7s', background: '#fff'    } },
+  { cls: 'cp7', style: { left: '58%',  top: '87%', width: 5,  height: 5,  animationDelay: '4.0s', background: '#ffb3d9' } },
+];
+
+const CascadeSlide = () => (
+  <motion.div
+    className="ss-slide cascade-slide"
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    exit={{ opacity: 0 }}
+    transition={{ duration: 0.9 }}
+  >
+    {/* Background blobs */}
+    <div className="cascade-blob cascade-blob-1" />
+    <div className="cascade-blob cascade-blob-2" />
+    <div className="cascade-blob cascade-blob-3" />
+    <div className="cascade-center-glow" />
+
+    {/* Floating sparkle particles */}
+    {CASCADE_PARTICLES.map(({ cls, style }) => (
+      <span
+        key={cls}
+        className="cascade-particle"
+        style={{ ...style, width: style.width, height: style.height }}
+        aria-hidden="true"
+      />
+    ))}
+
+    {/* Title */}
+    <motion.p
+      className="cascade-title"
+      initial={{ opacity: 0, y: -18 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.7, delay: 0.15 }}
+    >
+      Những khoảnh khắc đẹp nhất <span aria-hidden="true">💕</span>
+    </motion.p>
+
+    {/* 3 falling polaroids */}
+    <div className="cascade-drops">
+      {CASCADE_DROPS.map((p, i) => (
+        <motion.div
+          key={p.src}
+          className="cascade-polaroid"
+          initial={{ y: '-120vh', rotate: p.initRot, opacity: 0 }}
+          animate={{ y: 0, rotate: p.finalRot, opacity: 1 }}
+          transition={{
+            delay: 0.5 + i * 0.44,
+            duration: 0.88,
+            type: 'spring',
+            stiffness: 78,
+            damping: 12,
+          }}
+        >
+          <img src={p.src} alt="" draggable={false} />
+          <div className="cascade-polaroid-shine" />
+          <div className="cascade-polaroid-footer">
+            <span aria-hidden="true">♥</span>
+          </div>
+        </motion.div>
+      ))}
+    </div>
+
+    {/* Featured photo rising from bottom */}
+    <motion.div
+      className="cascade-star"
+      initial={{ y: '100%', opacity: 0, scale: 0.88 }}
+      animate={{ y: 0, opacity: 1, scale: 1 }}
+      transition={{
+        delay: 1.9,
+        duration: 1.2,
+        type: 'spring',
+        stiffness: 58,
+        damping: 13,
+      }}
+    >
+      <div className="cascade-star-glow" />
+      <div className="cascade-star-frame">
+        <div className="cascade-star-mat">
+          <img src={CASCADE_STAR.src} alt="" draggable={false} />
+        </div>
+        <motion.div
+          className="cascade-star-badge"
+          initial={{ opacity: 0, scale: 0, rotate: -20 }}
+          animate={{ opacity: 1, scale: 1, rotate: 10 }}
+          transition={{ delay: 3.2, duration: 0.55, type: 'spring', stiffness: 220 }}
+        >
+          ✨ Best shot
+        </motion.div>
+      </div>
+      <motion.p
+        className="cascade-star-caption"
+        initial={{ opacity: 0, y: 14 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 3.1, duration: 0.85 }}
+      >
+        {CASCADE_STAR.caption}
+      </motion.p>
+    </motion.div>
+  </motion.div>
+);
 
 /* ─────────── PHOTO SLIDE ─────────── */
 const PhotoSlide = ({ src, label, caption }) => (
@@ -302,6 +422,8 @@ const Slideshow = () => {
             caption={slide.caption}
           />
         )}
+
+        {slide.type === 'cascade' && <CascadeSlide key="cascade" />}
 
         {slide.type === 'surprise' && (
           <motion.div
