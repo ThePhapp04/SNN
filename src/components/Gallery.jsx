@@ -34,7 +34,7 @@ const Gallery = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: index * 0.08 }}
           >
-            <img src={src} alt={`Kỷ niệm ${index + 1}`} loading="lazy" />
+            <img src={src}  loading="lazy" />
           </motion.div>
         ))}
       </div>

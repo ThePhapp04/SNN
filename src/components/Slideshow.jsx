@@ -119,13 +119,28 @@ const LetterSlide = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      transition={{ duration: 0.7 }}
+      transition={{ duration: 0.9 }}
     >
-      {/* top gradient so progress bar stays readable */}
+      {/* Background orbs */}
+      <div className="ls-orb ls-orb-1" />
+      <div className="ls-orb ls-orb-2" />
+      <div className="ls-orb ls-orb-3" />
+      <div className="ls-streak" />
+
+      {/* top shade keeps progress bar readable */}
       <div className="slide-top-shade" />
 
-      <div className="letter-card glass letter-slide-inner">
+      <motion.div
+        className="letter-card letter-slide-inner"
+        initial={{ opacity: 0, y: 32, scale: 0.97 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        transition={{ duration: 0.9, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+      >
+        {/* Gradient border top bar */}
         <div className="letter-top-bar" />
+
+        {/* Decorative quote mark */}
+        <div className="letter-quote-mark" aria-hidden="true">“</div>
 
         <div className="letter-body">
           {LETTER_BLOCKS.map((block, bi) => {
@@ -144,9 +159,9 @@ const LetterSlide = () => {
               <motion.p
                 key={bi}
                 className={cls}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.35 }}
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.45 }}
               >
                 {text}
                 {showCursor && <span className="tw-cursor">|</span>}
@@ -154,7 +169,12 @@ const LetterSlide = () => {
             );
           })}
         </div>
-      </div>
+
+        {/* Bottom signature decoration */}
+        <div className="letter-footer-deco" aria-hidden="true">
+          <span /><span>♥</span><span />
+        </div>
+      </motion.div>
     </motion.div>
   );
 };
