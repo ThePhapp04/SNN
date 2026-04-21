@@ -8,10 +8,10 @@ import Surprise from './Surprise';
 const LETTER = {
   greeting: 'Chúc Mừng Sinh Nhật Vanhhhh! 🎂',
   paragraphs: [
-    'Hôm nay là ngày đặc biệt nhất của năm — ngày em chào đời, ngày mà anh biết ơn vì em đã xuất hiện trong cuộc đời này và đi vào cuộc đời anh.',
-    'Một tuổi mới, một trang mới. Anh chúc em năm nay sẽ chạm được những điều em hằng mơ ước — công việc thuận lợi, sức khỏe dồi dào, và trái tim luôn nhẹ nhàng, bình yên. Em xứng đáng được nhận tất cả những điều tốt đẹp nhất mà cuộc đời có thể trao.',
+    'Hôm nay là ngày đặc biệt nhất của năm — ngày embe VanAnh chào đời, ngày mà anh biết ơn vì em đã xuất hiện trong cuộc đời này và đi vào cuộc đời anh.',
+    'Một tuổi mới, một trang mới. ThePhap chúc Vanhh năm nay sẽ chạm được những điều em hằng mơ ước — công việc thuận lợi, sức khỏe dồi dào, và trái tim luôn nhẹ nhàng, bình yên. Em xứng đáng được nhận tất cả những điều tốt đẹp nhất mà cuộc đời có thể trao.',
     'Và dù năm mới có mang đến bao nhiêu thử thách, em đừng bao giờ quên rằng phía sau em luôn có anh — không phải để gánh thay, mà để cùng em bước qua từng bước một.',
-    'Sinh nhật vui, em yêu. Cảm ơn em vì đã sinh ra, vì đã là em — và vì đã để anh được iu em. ✨',
+    'Sinh nhật vui, baby. Cảm ơn em vì đã sinh ra, vì đã là em — và vì đã để anh được iu em. ✨',
   ],
   sign: 'Mãi yêu em, hôm nay và tất cả những ngày sinh nhật còn lại. Anh ❤️',
 };
